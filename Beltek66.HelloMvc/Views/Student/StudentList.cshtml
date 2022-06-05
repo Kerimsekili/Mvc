@@ -1,0 +1,55 @@
+﻿@model ListViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentList</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <table class="table table-hover">
+    <thread>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+        </tr>
+    </thread>
+    
+    <tbody>
+        @foreach (var ogr in Model.Students)
+        {
+         <tr>
+             <td>@ogr.Name</td>
+             <td>@ogr.Surname</td>
+             <td>@ogr.Age</td>
+         </tr>   
+        }
+        <table class="table table-hover">
+    <thread>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Department</th>
+        </tr>
+    </thread>
+    </table>
+    
+    <tbody>
+        @foreach (var tch in Model.Teachers)
+        {
+         <tr>
+             <td>@tch.Name</td>
+             <td>@tch.Surname</td>
+             <td>@tch.Department</td>
+         </tr>   
+        }
+    </tbody>
+    </table>
+</body>
+</html>

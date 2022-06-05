@@ -1,34 +1,65 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Beltek66.HelloMvc.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Beltek66.HelloMvc.Controllers
 {
     public class StudentController : Controller
     {
-        public string Index()
+        public ViewResult Index()//Action
         {
-            return "Hello MVC";
+            //string name = "Ahmet";
+            //ViewData["name"] = name;
+            //ViewData["surname"] = "Mehmet";
+            //ViewData["age"] = 25;
+
+            //string name1 = "Kerim";
+            //ViewData["name1"] = name1;
+            //ViewData["surname1"] = "Sekili";
+            //ViewData["age1"] = 22;
+            //ViewBag.name = "Ali";
+            //ViewBag.surname = "Veli";
+            //ViewBag.age = 25;
+
+            //string isim = "Mustafa";
+            //var name = "Murat";
+            //dynamic _name = " Osman";
+
+            var ogr = new Student();
+            ogr.Name = "Emre";
+            ogr.Surname = "Kaya";
+            ogr.Age = 22;
+
+            ViewData["student"] = ogr;
+            ViewBag.ogrenci = ogr;
+
+            return View();
         }
-        public string StudentList()
+        //ViewData :
+        //Key-Value Pair
+        //Dictionary Data
+        //Collection = Dizilerin eleman sayısı belirlemeden kullanılabilen hali.
+        //ViewBag arka planda ViewData koleksiyonunu kullanır.
+        //ViewBag dynamic bir yapıdır.Dynamic yapıların tipine runtime sırasında karar verilir.
+        public ViewResult StudentList()
         {
-            return "Öğrenci Listesi";
+            var students = new List<Student>();
+            students.Add(new Student { Name = "Murat", Surname = "Balaban", Age = 21 });
+            students.Add(new Student { Name = "Kerim", Surname = "Sekban", Age = 18 });
+            students.Add(new Student { Name = "Sultan", Surname = "Özdemir", Age = 28 });
+
+            var teacher = new List<Teacher>();
+            teacher.Add(new Teacher { Name = "Cihan", Surname = "Yetişken", Department = "C#" });
+            teacher.Add(new Teacher { Name = "Müslüm", Surname = "Endam", Department = "Java" });
+
+            var lst = new ListViewModel();
+            lst.Teachers = teacher;
+            lst.Students = students;
+            //ViewData["lst"]=students;
+            //ViewBag.lst = students;
+            return View(lst);
         }
-        public string StudentDetail(string id)
-        {
-            string ogr;
-            if (id == "1")
-
-                ogr = "Ali";
-
-            else if (id == "2")
-
-                ogr = "Ceyda";
-
-
-            else
-                ogr = "Bu id ile öğrenci yok ";
-            return ogr;
-
-        }
+       
     }
 }
 //Pattern isteğin nasıl karşılanacağını belirler.
